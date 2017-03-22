@@ -1,0 +1,14 @@
+---
+# Mandatory parameters
+USER: 'uid=ldapcheck,ou=People,dc=example,dc=com'
+PASS: 'pXrqnjJ+p6h4XyYd'
+URL: 'ldap://ldap.example.com/'
+URL_S: 'ldaps://ldap.example.com/'
+PORT: 1389
+PORT_S: 1636
+# Optional parameters
+HOST: '0.0.0.0'
+DATA_SIZE: 512
+SLEEP: 1
+DEBUG: True
+INFO: False

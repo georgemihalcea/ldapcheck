@@ -2,3 +2,4 @@
 *.so
 venv/
 config/config.yml
+.idea/

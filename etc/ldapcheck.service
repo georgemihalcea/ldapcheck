@@ -1,0 +1,11 @@
+[Unit]
+Description=Ldap Check Daemon
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+ExecStart=/usr/local/bin/ldapcheck.py
+
+[Install]
+WantedBy=multi-user.target
