@@ -65,7 +65,7 @@ class ConnThread(Thread):
         self.conn = conn
         self.config = config
         self.secure = secure
-        if config['INFO']:
+        if self.config['INFO']:
             print('New thread started')
 
     def send_response(self, code, resp):
@@ -76,7 +76,7 @@ class ConnThread(Thread):
             self.conn.send('Content-Type: text/plain\n\n')
             self.conn.send('%s\n' % resp)
         except socket.error, e:
-            if config['DEBUG']:
+            if self.config['DEBUG']:
                 print(e)
             pass
         self.conn.close()
@@ -100,7 +100,7 @@ class ConnThread(Thread):
             except ldap.LDAPError, e:
                 code = '503 Service Unavailable'
                 resp = e
-                if config['DEBUG']:
+                if self.config['DEBUG']:
                     print(e)
             self.send_response(code, resp)
         else:
