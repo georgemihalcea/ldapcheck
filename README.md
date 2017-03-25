@@ -44,22 +44,23 @@ frontend ldaps_front
     default_backend       ldaps_back
 
 backend ldap_back
-    default-server        port 389 fall 3 rise 2 inter 2s downinter 3s slowstart 30s maxconn 512 maxqueue 512 weight 100
-    server                ldap1 172.16.0.21 check port 1389
-    server                ldap2 172.16.0.22 check port 1389
+    default-server        fall 3 rise 2 inter 2s downinter 3s slowstart 30s maxconn 512 maxqueue 512 weight 100
+    server                ldap1 172.16.0.21:389 check port 1389
+    server                ldap2 172.16.0.22:389 check port 1389
     mode                  tcp
-    balance               first
+    balance               roundrobin
+    option                tcpka
     option                httpchk GET / HTTP/1.0
     http-check            expect status 200
     timeout server        2s
     timeout connect       1s
 
 backend ldaps_back
-    default-server        port 636 fall 3 rise 2 inter 2s downinter 3s slowstart 30s maxconn 512 maxqueue 512 weight 100
-    server                ldap1 172.16.0.21 check port 1636
-    server                ldap2 172.16.0.22 check port 1636
+    default-server        fall 3 rise 2 inter 2s downinter 3s slowstart 30s maxconn 512 maxqueue 512 weight 100
+    server                ldap1 172.16.0.21:636 check port 1636
+    server                ldap2 172.16.0.22:636 check port 1636
     mode                  tcp
-    balance               first
+    balance               roundrobin
     option                tcpka
     option                httpchk GET / HTTP/1.0
     http-check            expect status 200
